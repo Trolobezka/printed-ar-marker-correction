@@ -50,14 +50,13 @@ def generate(
             ctx.stroke()
 
         image = cairo.ImageSurface.create_from_png(image_name)
-        w = image.get_height()
-        h = image.get_width()
+        w, h = image.get_width(), image.get_height()
 
         ctx.translate(
             (inch2point(A4_W_INCH) - mm2point(x2real(img_w_mm))) / 2,
             (inch2point(A4_H_INCH) - mm2point(y2real(img_h_mm))) / 2,
         )
-        ctx.scale(mm2point(x2real(img_w_mm)) / h, mm2point(y2real(img_h_mm)) / w)
+        ctx.scale(mm2point(x2real(img_w_mm)) / w, mm2point(y2real(img_h_mm)) / h)
         ctx.set_source_surface(image)
         ctx.paint()
 
